@@ -75,7 +75,7 @@ export default function Home({ blogs }: any) {
 }
 
 export const getServerSideProps: GetServerSideProps<any> = async () => {
-  const res = await fetch('http://localhost:3000/api/blogs')
+  const res = await fetch('https://fact-flow.vercel.app/api/blogs')
   const blogs = await res.json()
   return { props: { ...blogs } }
 }

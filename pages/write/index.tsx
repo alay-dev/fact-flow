@@ -101,7 +101,7 @@ const Write = () => {
     const post_blog = async () => {
         if (title === "Untitled" || imgUrl === "" || category === "") return setError(true)
         setPostLoading(true)
-        const data = await fetch("http://localhost:3000/api/blogs", {
+        const data = await fetch("https://fact-flow.vercel.app/api/blogs", {
             method: "POST",
             body: JSON.stringify({
                 title: title,
