@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import Header from '@/components/header/Header'
 import React, { useRef, useState, useEffect, useLayoutEffect } from 'react';
 import { Poppins } from 'next/font/google'
@@ -36,7 +38,7 @@ function useWindowSize() {
     return size;
 }
 
-const index = () => {
+const Write = () => {
     const [title, setTitle] = useState("")
     const [coverImage, setCoverImage] = useState<any>(null)
     const [category, setCategory] = useState("");
@@ -288,4 +290,4 @@ const index = () => {
     )
 }
 
-export default index
+export default Write

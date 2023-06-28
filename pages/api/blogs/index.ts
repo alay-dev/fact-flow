@@ -10,7 +10,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             if (error) throw new Error(error)
 
             return res.status(200).json({ blog })
-        } catch (error) {
+        } catch (error: any) {
             return res.status(500).json({ error: error.message })
         }
 
@@ -21,7 +21,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             if (error) throw new Error(error)
 
             return res.status(200).json({ blogs })
-        } catch (error) {
+        } catch (error: any) {
             return res.status(500).json({ error: error.message })
         }
     }
@@ -32,7 +32,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             if (error) throw new Error(error)
 
             return res.status(200).json({ blog })
-        } catch (error) {
+        } catch (error: any) {
             return res.status(500).json({ error: error.message })
         }
     }

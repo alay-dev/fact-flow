@@ -11,7 +11,7 @@ import Link from 'next/link'
 
 const poppins = Poppins({ subsets: ['latin'], weight: ["100", "200", "300", "400", "500", "600", "700", "800"] })
 
-export default function Home({ blogs }) {
+export default function Home({ blogs }: any) {
 
   return (
     <>
@@ -63,7 +63,7 @@ export default function Home({ blogs }) {
           </div>
           <div className='flex lg:gap-10 gap-5 items-start' >
             {blogs.slice(1, 3).map((item: any) => {
-              return <NewsCard title={item.title} category={item.category} publisher={item.publisher} created_at={item.created_at} cover_image={item.cover_image} publisher_pic={item.publisher_pic} summary={item.summary} />
+              return <NewsCard key={item.title} title={item.title} category={item.category} publisher={item.publisher} created_at={item.created_at} cover_image={item.cover_image} publisher_pic={item.publisher_pic} summary={item.summary} />
             })}
 
           </div>

@@ -3,7 +3,7 @@ import Image from "next/image"
 import f1Logo from "@/public/assets/f1Logo.png"
 import Link from "next/link"
 
-const NewsCard = ({ title, category, publisher, cover_image, created_at, publisher_pic, summary }) => {
+const NewsCard = ({ title, category, publisher, cover_image, created_at, publisher_pic, summary }: any) => {
     return (
         <div className="flex-1">
             <div className="rounded-md relative w-full md:h-[15rem] h-44 overflow-hidden mb-4" >
