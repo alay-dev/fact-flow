@@ -8,10 +8,14 @@ import Header from '@/components/header/Header'
 import moment from "moment"
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
 import Link from 'next/link'
+import useWindowSize from "@/components/useWindowSize/useWindowSize"
 
 const poppins = Poppins({ subsets: ['latin'], weight: ["100", "200", "300", "400", "500", "600", "700", "800"] })
 
+
+
 export default function Home({ blogs }: any) {
+  const [width, height] = useWindowSize()
 
   return (
     <>
@@ -62,7 +66,7 @@ export default function Home({ blogs }: any) {
 
           </div>
           <div className='flex lg:gap-10 gap-5 items-start' >
-            {blogs.slice(1, 3).map((item: any) => {
+            {blogs.slice(1, width > 900 ? 5 : width > 400 ? 3 : 2).map((item: any) => {
               return <NewsCard key={item.title} title={item.title} category={item.category} publisher={item.publisher} created_at={item.created_at} cover_image={item.cover_image} publisher_pic={item.publisher_pic} summary={item.summary} />
             })}
 
@@ -75,7 +79,7 @@ export default function Home({ blogs }: any) {
 }
 
 export const getServerSideProps: GetServerSideProps<any> = async () => {
-  const res = await fetch('https://fact-flow.vercel.app/api/blogs')
+  const res = await fetch(`https://fact-flow.vercel.app/api/blogs`)
   const blogs = await res.json()
   return { props: { ...blogs } }
 }

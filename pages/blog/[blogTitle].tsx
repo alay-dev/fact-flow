@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Poppins } from 'next/font/google'
 import Header from "@/components/header/Header"
 import Image from 'next/image'
@@ -14,6 +14,15 @@ const poppins = Poppins({ subsets: ['latin'], weight: ["100", "200", "300", "400
 
 
 const BlogDetail = ({ blog }: any) => {
+    const [copied, setCopied] = useState(false);
+
+    useEffect(() => {
+        if (copied) {
+            setTimeout(() => {
+                setCopied(false)
+            }, 3000)
+        }
+    }, [copied])
 
     return (
         <>
@@ -47,9 +56,19 @@ const BlogDetail = ({ blog }: any) => {
                 <div className='border-t-4 flex justify-between pt-4' >
                     <div />
                     <div className='flex gap-3 items-center' >
-                        <button className='flex gap-1 items-center hover:bg-green-600 hover:text-white hover:shadow-md transition rounded-md border border-gray-400 py-1 px-4 ' >
-                            <VscCopy className='text-xl' />
-                            <p className='text-sm' >Copy Link</p>
+                        <button onClick={() => { navigator.clipboard.writeText(window.location.href); setCopied(true) }} className='flex gap-1 items-center hover:bg-green-600 hover:text-white hover:shadow-md transition rounded-md border border-gray-400 py-1 px-4 ' >
+                            {copied ?
+                                <>
+                                    <p className='text-sm' >Copied!</p>
+                                </>
+                                :
+                                <>
+                                    <VscCopy className='text-xl' />
+                                    <p className='text-sm' >Copy Link</p>
+                                </>
+
+                            }
+
                         </button>
                         <button className='rounded-md border border-gray-400 py-1 px-2'>
                             <ImTwitter className='text-xl text-gray-600' />

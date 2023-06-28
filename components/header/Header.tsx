@@ -6,9 +6,12 @@ import { GoBell } from "react-icons/go"
 import { HiOutlinePencilSquare } from "react-icons/hi2"
 import { useSession, signIn, signOut } from 'next-auth/react'
 import googleLogo from "@/public/assets/googleLogo.svg"
+import facebookLogo from "@/public/assets/facebookLogo.png"
 import { useRouter } from 'next/router'
+import { Modal } from "@mui/material"
 
 const Header = () => {
+    const [loginModal, setLoginModal] = useState(false)
     const { data: session } = useSession();
 
     const router = useRouter()
@@ -45,9 +48,30 @@ const Header = () => {
                     </li>
 
                 </ul>}
-            {!session && <button className="flex gap-2 items-center border rounded-md px-2 py-1" onClick={() => signIn("google")} >
+            {!session && <button onClick={() => setLoginModal(true)} className="hover:bg-black transition bg-blue-600 text-white py-1 px-5 rounded-md" >Sign in</button>}
+            {/* {!session && <button className="flex gap-2 items-center border rounded-md px-2 py-1" onClick={() => signIn("google")} >
                 <Image src={googleLogo} alt="Google Login" width={25} height={25} />
-                Sign in google</button>}
+                Sign in google</button>} */}
+            <Modal open={loginModal} onClose={() => setLoginModal(false)} >
+                <div className="outline-none absolute w-[25rem]  rounded-md p-8 bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" >
+                    <p className="mb-8 text-lg "><strong>Login</strong> and start writing your own blog...</p>
+                    <div className="flex flex-col items-center">
+                        <button onClick={() => signIn("google")} className="py-3 px-7 rounded-md border flex items-center gap-3" >
+                            <Image src={googleLogo} width={25} height={25} alt="google login" />
+                            Continue with google
+                        </button>
+                        <div className="flex items-center gap-3 mt-2 mb-2">
+                            <div className="h-1 bg-gray-200 w-16" />
+                            <p>OR</p>
+                            <div className="h-1 bg-gray-200 w-16" />
+                        </div>
+                        <button onClick={() => signIn("facebook")} className="py-3 px-7 rounded-md border flex items-center gap-3" >
+                            <Image src={facebookLogo} width={25} height={25} alt="google login" />
+                            Continue with facebook
+                        </button>
+                    </div>
+                </div>
+            </Modal>
         </div>
     )
 }

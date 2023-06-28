@@ -15,6 +15,7 @@ import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { CircularProgress } from '@mui/material';
+import useWindowSize from "@/components/useWindowSize/useWindowSize"
 
 const firebaseConfig = {
     apiKey: "AIzaSyCx14egAfXW23IFhbUWrKiOhWius0Ghse4",
@@ -25,18 +26,6 @@ const firebaseConfig = {
     appId: "1:32919358536:web:9a084163325c0211fc1c7d"
 };
 
-function useWindowSize() {
-    const [size, setSize] = useState([0, 0]);
-    useLayoutEffect(() => {
-        function updateSize() {
-            setSize([window.innerWidth, window.innerHeight]);
-        }
-        window.addEventListener('resize', updateSize);
-        updateSize();
-        return () => window.removeEventListener('resize', updateSize);
-    }, []);
-    return size;
-}
 
 const Write = () => {
     const [title, setTitle] = useState("")
@@ -101,7 +90,7 @@ const Write = () => {
     const post_blog = async () => {
         if (title === "Untitled" || imgUrl === "" || category === "") return setError(true)
         setPostLoading(true)
-        const data = await fetch("https://fact-flow.vercel.app/api/blogs", {
+        const data = await fetch(`https://fact-flow.vercel.app/api/blogs`, {
             method: "POST",
             body: JSON.stringify({
                 title: title,
