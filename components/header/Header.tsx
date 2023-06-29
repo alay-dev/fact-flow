@@ -54,7 +54,7 @@ const Header = () => {
                 Sign in google</button>} */}
             <Modal open={loginModal} onClose={() => setLoginModal(false)} >
                 <div className="outline-none absolute w-[25rem]  rounded-md p-8 bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" >
-                    <p className="mb-8 text-lg "><strong>Login</strong> and start writing your own blog...</p>
+                    <p className="mb-8 text-lg "><strong>Login</strong> and start writing your own news...</p>
                     <div className="flex flex-col items-center">
                         <button onClick={() => signIn("google")} className="py-3 px-7 rounded-md border flex items-center gap-3" >
                             <Image src={googleLogo} width={25} height={25} alt="google login" />

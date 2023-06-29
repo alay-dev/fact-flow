@@ -59,10 +59,13 @@ export default function Home({ blogs }: any) {
         <section className='pb-6' >
           <div className='flex justify-between items-center mb-8' >
             <h2 className='lg:text-3xl text-xl font-semibold'  >Latest news</h2>
-            <button className='flex gap-2 items-center font-medium text-green-700' >
-              <p>See all</p>
-              <BsArrowRight />
-            </button>
+            <Link href="/latest">
+              <button className='flex gap-2 items-center font-medium text-green-700' >
+                <p>See all</p>
+                <BsArrowRight />
+              </button>
+            </Link>
+
 
           </div>
           <div className='flex lg:gap-10 gap-5 items-start' >

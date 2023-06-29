@@ -10,7 +10,7 @@ const NewsCard = ({ title, category, publisher, cover_image, created_at, publish
 
     return (
         <div className="flex-1">
-            <div className="rounded-md relative w-full md:h-[15rem] h-44 overflow-hidden mb-4" >
+            <div className="rounded-md relative w-full md:h-[12rem] h-44 overflow-hidden mb-4" >
                 <Image fill src={cover_image} alt={title} />
             </div>
             <div className="flex gap-1 md:gap-2 items-center mb-4" >
